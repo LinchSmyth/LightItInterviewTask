@@ -12,36 +12,36 @@ class PagesController < ApplicationController
   def result
     # Экшн для зашифовки
     if params[:Encrypt]
-      @encrypted_text = encrypt params[:clear_text], params[:shift].to_i
+      @encrypted_text = encryption_and_decryption params[:clear_text], params[:shift].to_i
       raise "#{@encrypted_text}"
     # Экшн для расшифровки
     elsif params[:Decrypt]
-      render "pages/help"
+      # Для разшифровки мы меняем значение перестановки, основываясь на том,
+      # что разшифровка с шагом в 2 эквивалентна шифровке с шагом 24 (26 - 2)
+      shift = 26 - params[:shift].to_i
+      @decrypted_text = encryption_and_decryption params[:cyphred_text], shift
+      raise "#{@decrypted_text}"
     end 
   end
 
-  def encrypt text, shift
+  def encryption_and_decryption text, shift
       # Превращаем строку в массив чисел
-    cyphred_text = []
-    clear_text = text.chars.map(&:ord)
-    clear_text.map do |symbol|
+    otput_text = []
+    input_text = text.chars.map(&:ord)
+    input_text.map do |symbol|
       if 65 <= symbol && symbol <= 90 
         # Если символ принадлежит алфавиту в верхнем регистре
         # выполняем перестановку
-        cyphred_text.push(shifting symbol, shift, 90)
+        otput_text.push(shifting symbol, shift, 90)
       elsif 97 <= symbol && symbol <= 122
         # Те же самые действия для нижнего регистра
-        cyphred_text.push(shifting symbol, shift, 122)
+        otput_text.push(shifting symbol, shift, 122)
       else
         # если символ не лежит в данном диапазоне - то просто прибавляем его 
-        cyphred_text << symbol 
+        otput_text << symbol 
       end 
     end
-    cyphred_text.map{ |symbol| symbol.chr }.join
-  end
-
-  def decrypt text, shift
-
+    otput_text.map{ |symbol| symbol.chr }.join
   end
 
   # Метод перестановки
