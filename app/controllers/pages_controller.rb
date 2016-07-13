@@ -13,14 +13,16 @@ class PagesController < ApplicationController
     # Экшн для зашифовки
     if params[:Encrypt]
       @encrypted_text = encryption_and_decryption params[:clear_text], params[:shift].to_i
-      raise "#{@encrypted_text}"
+      @decrypted_text = params[:clear_text]
+      @shift = params[:shift]
     # Экшн для расшифровки
     elsif params[:Decrypt]
       # Для разшифровки мы меняем значение перестановки, основываясь на том,
       # что разшифровка с шагом в 2 эквивалентна шифровке с шагом 24 (26 - 2)
       shift = 26 - params[:shift].to_i
+      @encrypted_text = params[:cyphred_text]
       @decrypted_text = encryption_and_decryption params[:cyphred_text], shift
-      raise "#{@decrypted_text}"
+      @shift = params[:shift]
     end 
   end
 
