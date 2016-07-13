@@ -7,4 +7,9 @@ class PagesController < ApplicationController
 
   def about
   end
+
+  # метод для зашифровки и разшифровки текста
+  def result
+    raise "Foo"
+  end
 end
