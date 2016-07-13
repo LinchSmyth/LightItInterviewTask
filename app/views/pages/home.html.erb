@@ -2,31 +2,31 @@
 	<h1>Here you can encrypt any text in English by Caesar cipher.</h1>
 	<p>For additional information visit <%= link_to "Help", pages_help_path %> and <%= link_to "About", pages_about_path %> pages</p>
 	<hr />
+  
   <div class="row">
-	
-	<div class=	"col-lg-5", "col-md-5", "col-sm-5", "col-xs-5">
-	<textarea class="form-control" rows="10" placeholder="Decrypted or clear text"></textarea>
-	</div>
-	
-	<div class=	"col-lg-2", "col-md-2", "col-sm-2", "col-xs-2">
-	<h4>Select shift</h4>
-	<select class="form-control">
-	  <%(1..26).each do |n|%>
-	  <option><%=n%></option>
-	  <%end%>
-	</select>
-	<hr />
-	<button type="button" class="btn btn-default btn-lg btn-success btn-block" aria-label="Left Align">
-	  <span class="glyphicon glyphicon-chevron-left"></span> Decrypt
-	</button>
-	<button type="button" class="btn btn-default btn-lg btn-danger btn-block" aria-label="Left Align">Encrypt
-	  <span class="glyphicon glyphicon-chevron-right"></span>
-	</button>
-	</div>
+  	
+  	<%= form_tag pages_result_path, method: "post" do %>
+  	  <div class=	"col-lg-5 col-md-5 col-sm-5 col-xs-5">
+    	<%=text_area_tag "name", nil, class: 'form-control', rows: 10, placeholder: "Decrypted or clear text"%>
+      </div>
 
-	<div class=	"col-lg-5", "col-md-5", "col-sm-5", "col-xs-5">
-	<textarea class="form-control" rows="10" placeholder="Encrypted text"></textarea>
-	</div>
+      <div class=	"col-lg-2 col-md-2 col-sm-2 col-xs-2">
+      	<h4>Select shift</h4>
+      	<%= select_tag "shift", options_for_select((1..26).to_a.map { |shift| [shift,shift] }), class: 'form-control'%>
+      	<hr />
+      	<%= button_tag(type: 'submit', class: "btn btn-default btn-lg btn-danger btn-block", name: 'Encrypt') do %>
+  		  Encrypt <span class="glyphicon glyphicon-chevron-right"></span> 
+		<% end %>
+		<%= button_tag(type: 'submit', class: "btn btn-default btn-lg btn-success btn-block", name: 'Decrypt') do %>
+  		  <span class="glyphicon glyphicon-chevron-left"></span> Decrypt  
+		<% end %>
+      </div>
+
+      <div class=	"col-lg-5 col-md-5 col-sm-5 col-xs-5">
+    	<%=text_area_tag "name", nil, class: 'form-control', rows: 10, placeholder: "Encrypted text"%>
+      </div>
+
+	<% end %>
   
   </div>
 </div>
