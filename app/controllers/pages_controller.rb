@@ -25,20 +25,13 @@ class PagesController < ApplicationController
     cyphred_text = []
     clear_text = text.chars.map(&:ord)
     clear_text.map do |symbol|
-      
       if 65 <= symbol && symbol <= 90 
         # Если символ принадлежит алфавиту в верхнем регистре
         # выполняем перестановку
-        symbol += shift
-        # Если символ получился больше Z (90) то возвращаем его в алфавит
-        # теперь при смещении в 1, Z становится А и т.д.
-        symbol -= 26 if symbol > 90
-        cyphred_text << symbol
+        cyphred_text.push(shifting symbol, shift, 90)
       elsif 97 <= symbol && symbol <= 122
         # Те же самые действия для нижнего регистра
-        symbol += shift
-        symbol -= 26 if symbol > 122 
-        cyphred_text << symbol
+        cyphred_text.push(shifting symbol, shift, 122)
       else
         # если символ не лежит в данном диапазоне - то просто прибавляем его 
         cyphred_text << symbol 
@@ -49,5 +42,14 @@ class PagesController < ApplicationController
 
   def decrypt text, shift
 
+  end
+
+  # Метод перестановки
+  def shifting symbol, shift, n
+    symbol += shift
+    # Если символ выходит за пределы "алфавита" то возвращаем его в алфавит
+    # теперь при смещении в 1, Z становится А и т.д.
+    symbol -= 26 if symbol > n
+    return symbol
   end
 end
