@@ -54,4 +54,30 @@ class PagesController < ApplicationController
     symbol -= 26 if symbol > n
     return symbol
   end
+
+  # Метод для анализа частоты каждой буквы
+  def frequency_counter clear_text, cyphred_text
+    cyphred_letter_frequency = {}
+    decyphred_letter_frequency = {}
+    letter_frequency = {}
+    
+    cyphred_text.each_char do |char|
+      ascii_char = char.downcase.ord
+      next if ascii_char < 65 && ascii_char > 90
+      cyphred_letter_frequency[char] = 0 unless counts.include?(char)
+      cyphred_letter_frequency[char] += 1
+    end
+    
+    clear_text.each_char do |char|
+      ascii_char = char.downcase.ord
+      next if ascii_char < 65 && ascii_char > 90
+      decyphred_letter_frequency[char] = 0 unless counts.include?(char)
+      decyphred_letter_frequency[char] += 1
+    end
+
+    cyphred_text.sort_by { |key, value| value }.reverse.to_h
+    cyphred_text.each_pair do |key, value|
+
+    end
+  end
 end
