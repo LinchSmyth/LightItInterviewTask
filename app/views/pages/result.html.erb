@@ -29,7 +29,9 @@
     <hr />
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <%= column_chart(@letter_frequency) %>
+        <br>
+        <h2 align="center">Frequency diagram of Your text:</h2>
+        <%= column_chart @letter_frequency, height: "400px" %>
       </div>
     </div>
   <% end %>
