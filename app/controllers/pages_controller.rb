@@ -67,9 +67,11 @@ class PagesController < ApplicationController
       # по аналогии с шифровкой/разшифровкой сначала переводим символы в числовой формат, а затем
       # проверяем, принадлежит ли символ буквам маленького регистра, если нет - переходим к следующему символу
       ascii_char = char.ord
-      next if ascii_char < 97 && ascii_char > 122
-      decyphred_letter_frequency[char] = 0 unless decyphred_letter_frequency.include?(char)
-      decyphred_letter_frequency[char] += 1
+      if ascii_char >= 97 && ascii_char <= 122
+        decyphred_letter_frequency[char] = 0 unless decyphred_letter_frequency.include?(char)
+        decyphred_letter_frequency[char] += 1
+      else next
+      end
     end
 
      # cортируем хэш по значениям от большего к меньшему
