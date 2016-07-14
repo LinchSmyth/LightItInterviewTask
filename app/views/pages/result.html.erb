@@ -28,7 +28,7 @@
     </div>
     <hr />
     <div class="row">
-      <%= text_area_tag :frequency, @letter_frequency, class: 'form-control', rows: 10 %>
+      <%= column_chart(@letter_frequency) %>
     </div>
   <% end %>
 </div>
