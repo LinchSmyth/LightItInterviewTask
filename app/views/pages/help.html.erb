@@ -1,10 +1,43 @@
 <div class="col-lg-12", "col-md-12", "col-sm-12", "col-xs-12">
 	<h1 align="center">What is Caesar cipher?</h1>
-	<h4>
+	<h3>
 		<p align="justify">In cryptography, a Caesar cipher, also known as Caesar's cipher, the shift cipher, Caesar's code or Caesar shift, is one of the simplest and most widely known encryption techniques. It is a type of substitution cipher in which each letter in the plaintext is replaced by a letter some fixed number of positions down the alphabet. For example, with a left shift of 3, D would be replaced by A, E would become B, and so on. The method is named after Julius Caesar, who used it in his private correspondence.</p>
-	</h4>
-	<h1 align="center">How does it works?</h1>
-	<p align="justify">Lorem ipsum dolor sit amet</p>
+	</h3>
 	<h1 align="center">How should I use this site?</h1>
-	<p align="justify">Lorem ipsum dolor sit amet</p>
+	<p>
+	  <h2 align="center">Step 1</h2>
+	  <h2 align="center">Type your text in left field:</h4>
+	  <img class="center fit" src="/1.png" alt="1" />
+	  <h2 align="center">or, if you have ciphered text and want it to decrypt into right field:</h4>
+	  <img class="center fit" src="/2.png" alt="2" />
+	  <br />
+	  <hr />
+	  <h2 align="center">Step 2</h2>
+	  <h2 align="center">Select shift for cypher, from 1 to 26:</h4>
+	  <img class="center fit" src="/3.png" alt="3" />
+	  <br />
+	  <hr />
+	  <h2 align="center">Step 3</h2>
+	  <h2 align="center">Press "Encrypt" button to cipher text, or "Decrypt" button to decrypt it.</h4>
+	  <br />
+	  <hr />
+	  <h2 align="center">Step 4</h2>
+	  <h2 align="center">See the result:</h4>
+	  <img class="center fit" src="/4.png" alt="4" />
+	  <br />
+	  <hr />
+	  <h2 align="center">Step 5</h2>
+	  <h2 align="center">Scroll down a little bit to see the frequency chart. "E > O", "T > D", etc. at the bottom means, that E have been replaced by O, T by D and so on:</h4>
+	  <img class="center fit" src="/5.png" alt="5" />
+	</p>
 </div>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" language="JavaScript">
+  function set_body_height() { // set body height = window height
+    $('body').height($(window).height());
+  }
+  $(document).ready(function() {
+    $(window).bind('resize', set_body_height);
+    set_body_height();
+  });
+</script>
