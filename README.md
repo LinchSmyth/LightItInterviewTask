@@ -1,6 +1,8 @@
 
 # This is my interview task for [LightIt] (http://light-it.net/) company.
 
+This app is currently running on [heroku] (https://lightittask.herokuapp.com/).
+
 Installation and using (requires git, rvm and bundler):
 
 In terminal go to the directory you want to install it.
