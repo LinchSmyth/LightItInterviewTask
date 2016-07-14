@@ -12,17 +12,19 @@ class PagesController < ApplicationController
   def result
     # Экшн для зашифовки
     if params[:Encrypt]
-      @encrypted_text = encryption_and_decryption params[:clear_text], params[:shift].to_i
-      @decrypted_text = params[:clear_text]
-      @shift = params[:shift]
+      @encrypted_text   = encryption_and_decryption params[:clear_text], params[:shift].to_i
+      @decrypted_text   = params[:clear_text]
+      @shift            = params[:shift]
+      @letter_frequency = frequency_counter @decrypted_text, @shift 
     # Экшн для расшифровки
     elsif params[:Decrypt]
       # Для разшифровки мы меняем значение перестановки, основываясь на том,
       # что разшифровка с шагом в 2 эквивалентна шифровке с шагом 24 (26 - 2)
-      shift = 26 - params[:shift].to_i
-      @encrypted_text = params[:cyphred_text]
-      @decrypted_text = encryption_and_decryption params[:cyphred_text], shift
-      @shift = params[:shift]
+      shift             = 26 - params[:shift].to_i
+      @encrypted_text   = params[:cyphred_text]
+      @decrypted_text   = encryption_and_decryption params[:cyphred_text], shift
+      @shift            = params[:shift]
+      @letter_frequency = frequency_counter @decrypted_text, shift
     end 
   end
 
@@ -56,28 +58,36 @@ class PagesController < ApplicationController
   end
 
   # Метод для анализа частоты каждой буквы
-  def frequency_counter clear_text, cyphred_text
-    cyphred_letter_frequency = {}
-    decyphred_letter_frequency = {}
-    letter_frequency = {}
-    
-    cyphred_text.each_char do |char|
-      ascii_char = char.downcase.ord
-      next if ascii_char < 65 && ascii_char > 90
-      cyphred_letter_frequency[char] = 0 unless counts.include?(char)
-      cyphred_letter_frequency[char] += 1
-    end
-    
-    clear_text.each_char do |char|
-      ascii_char = char.downcase.ord
-      next if ascii_char < 65 && ascii_char > 90
-      decyphred_letter_frequency[char] = 0 unless counts.include?(char)
+  def frequency_counter clear_text, shift
+    decyphred_letter_frequency = {}       # => хэш для подсчета частоты букв в расшифрованом тексте 
+    letter_frequency = {}                 # => хэш для вывода частоты букв в обоих текстах
+
+    # блок подсчета букв, которые мы предварительно переводим в нижний регистр
+    clear_text.downcase.each_char do |char|
+      # по аналогии с шифровкой/разшифровкой сначала переводим символы в числовой формат, а затем
+      # проверяем, принадлежит ли символ буквам маленького регистра, если нет - переходим к следующему символу
+      ascii_char = char.ord
+      next if ascii_char < 97 && ascii_char > 122
+      decyphred_letter_frequency[char] = 0 unless decyphred_letter_frequency.include?(char)
       decyphred_letter_frequency[char] += 1
     end
 
-    cyphred_text.sort_by { |key, value| value }.reverse.to_h
-    cyphred_text.each_pair do |key, value|
-
+     # cортируем хэш по значениям от большего к меньшему
+    decyphred_letter_frequency = decyphred_letter_frequency.sort_by{ |key, value| value }.reverse.to_h
+    
+    # формируем финальный хеш, формата {"РАЗШИФРОВАННЫЙ_СИМВОЛ -> ЗАШИФРОВАННЫЙ_СИМВОЛ " => КОЛ-ВО}
+    decyphred_letter_frequency.each_pair do |key, value|
+        # выполняем опять перевод символа в числовой формат, что бы каждый символ зашифровать
+      ascii = key.chars.map(&:ord)
+      letter = ascii[0]
+        # отправляем каждый символ на зашифровку
+      cyphred_letter = shifting letter, shift.to_i, 122
+        # перекодируем число в символ
+      cyphred_text_key = cyphred_letter.chr
+        # формируем финальный хэш
+      letter_frequency["#{key.upcase} -> #{cyphred_text_key.upcase}"] = value
     end
+
+    return letter_frequency
   end
 end

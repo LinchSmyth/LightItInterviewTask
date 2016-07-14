@@ -3,9 +3,9 @@
 	<p>For additional information visit <%= link_to "Help", pages_help_path %> and <%= link_to "About", pages_about_path %> pages</p>
 	<hr />
   
-  <div class="row">
-  	
-  	<%= form_tag pages_result_path, method: "post" do %>
+  <%= form_tag pages_result_path, method: "post" do %>
+    
+    <div class="row">
   	  <div class=	"col-lg-5 col-md-5 col-sm-5 col-xs-5">
     	<%=text_area_tag :clear_text, @decrypted_text, class: 'form-control', rows: 10, placeholder: "Decrypted or clear text"%>
       </div>
@@ -25,8 +25,10 @@
       <div class=	"col-lg-5 col-md-5 col-sm-5 col-xs-5">
     	<%=text_area_tag :cyphred_text, @encrypted_text, class: 'form-control', rows: 10, placeholder: "Encrypted text"%>
       </div>
-
-	<% end %>
-  
-  </div>
+    </div>
+    <hr />
+    <div class="row">
+      <%= text_area_tag :frequency, @letter_frequency, class: 'form-control', rows: 10 %>
+    </div>
+  <% end %>
 </div>
