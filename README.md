@@ -3,16 +3,16 @@
 
 Installation and using (requires git, rvm and bundler):
 
-1. In terminal go to the directory you want to install it.
-2. Clone repository by running:
+In terminal go to the directory you want to install it.
+Clone repository by running:
 ```
 git clone https://github.com/LinchSmyth/LightItInterviewTask.git
 ```
-3. Move to the directory:
+Move to the directory:
 ```
 cd ./LightItInterviewTask/
 ```
-4. Install gems and run:
+Install gems and run:
 ```
 bundle
 rails s
