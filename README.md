@@ -1,4 +1,3 @@
-== README
 
 # This is my interview task for [LightIt] (http://light-it.net/) company.
 
