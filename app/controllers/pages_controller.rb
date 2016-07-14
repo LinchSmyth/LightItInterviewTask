@@ -87,7 +87,7 @@ class PagesController < ApplicationController
         # перекодируем число в символ
       cyphred_text_key = cyphred_letter.chr
         # формируем финальный хэш
-      letter_frequency["#{key.upcase} -> #{cyphred_text_key.upcase}"] = value
+      letter_frequency["#{key.upcase} > #{cyphred_text_key.upcase}"] = value
     end
 
     return letter_frequency

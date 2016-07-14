@@ -1,2 +1,43 @@
 @import 'bootstrap-sprockets';
 @import "bootstrap";
+body {
+	padding-top: 50px;
+}
+
+.navbar-custom {
+	background-color: #2529e5;
+    color: #58a2f6;
+  	border-radius: 0;
+}
+  
+.navbar-custom .navbar-nav > li > a {
+  	color:#fff;
+}
+
+.navbar-custom .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {
+    color: #58a2f6;
+	background-color: #58a2f6;
+}
+      
+.navbar-custom .navbar-nav > li > a:hover, .nav > li > a:focus {
+    text-decoration: none;
+    background-color: #000fdb;
+    color: #ffffff
+}
+      
+.navbar-custom .navbar-brand {
+  	color: #fff;
+}
+
+.navbar-custom .navbar-toggle {
+  	background-color:#58a2f6;
+}
+
+.navbar-custom .icon-bar {
+  	background-color: #000fdb;
+  	color: 818aff;
+}
+
+.navbar-default .navbar-brand:hover {
+    color: #5fd3ff;
+}
