@@ -1,9 +1,9 @@
 
-# This is my interview task for [LightIt] (http://light-it.net/) company.
+# This is my interview task for [LightIt](http://light-it.net/) company.
 
-This app is currently running on [heroku] (https://lightittask.herokuapp.com/).
+This app is currently running on [heroku](https://lightittask.herokuapp.com/).
 
-If you want to read full text of the task click [here] (https://drive.google.com/file/d/0B0uQAQHIVbOIYWw1bTUxejB2NlU/view?usp=sharing)
+If you want to read full text of the task click [here](https://drive.google.com/file/d/0B0uQAQHIVbOIYWw1bTUxejB2NlU/view?usp=sharing)
 
 Installation and using (requires git, rvm and bundler):
 
